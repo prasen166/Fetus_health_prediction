@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suspect Prediction</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #fff9c4;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            text-align: center;
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #f57c00;
+        }
+        p {
+            color: #e65100;
+            font-size: 18px;
+        }
+        .medications {
+            margin-top: 20px;
+            text-align: left;
+        }
+        .medications ul {
+            padding-left: 20px;
+        }
+        .back-button {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #f57c00;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .back-button:hover {
+            background-color: #e65100;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Prediction Result: Suspect</h1>
+        <p>The fetal health is suspect. Further examination is recommended.</p>
+        <div class="medications">
+            <p>Medications that can be taken:</p>
+            <ul>
+                <li>Antibiotics (if infection suspected)</li>
+                <li>Bed rest</li>
+            </ul>
+        </div>
+        <a href="/" class="back-button">Go Back</a>
+    </div>
+</body>
+</html>
+

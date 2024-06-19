@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fetal Health Prediction</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f5f5f5;
+        }
+        .container {
+            width: 400px;
+            height: 100vh;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            overflow-y: auto;
+        }
+        h1 {
+            text-align: center;
+        }
+        label {
+            margin-bottom: 5px;
+            display: block;
+        }
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4caf50;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        #result {
+            margin-top: 20px;
+            font-weight: bold;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Fetal Health Prediction</h1>
+        <form id="prediction-form">
+            <label for="baseline">Baseline Value:</label>
+            <input type="number" id="baseline" step="any" required placeholder="Enter baseline value">
+            <label for="accelerations">Accelerations:</label>
+            <input type="number" id="accelerations" step="any" required placeholder="Enter accelerations value">
+            <label for="fetal_movement">Fetal Movement:</label>
+            <input type="number" id="fetal_movement" step="any" required placeholder="Enter fetal movement value">
+            <label for="uterine_contractions">Uterine Contractions:</label>
+            <input type="number" id="uterine_contractions" step="any" required placeholder="Enter uterine contractions value">
+            <label for="light_decelerations">Light Decelerations:</label>
+            <input type="number" id="light_decelerations" step="any" required placeholder="Enter light decelerations value">
+            <label for="severe_decelerations">Severe Decelerations:</label>
+            <input type="number" id="severe_decelerations" step="any" required placeholder="Enter severe decelerations value">
+            <label for="prolongued_decelerations">Prolongued Decelerations:</label>
+            <input type="number" id="prolongued_decelerations" step="any" required placeholder="Enter prolonged decelerations value">
+            <label for="abnormal_short_term_variability">Abnormal Short Term Variability:</label>
+            <input type="number" id="abnormal_short_term_variability" step="any" required placeholder="Enter abnormal short term variability value">
+            <label for="mean_value_of_short_term_variability">Mean Value of Short Term Variability:</label>
+            <input type="number" id="mean_value_of_short_term_variability" step="any" required placeholder="Enter mean value of short term variability">
+            <label for="percentage_of_time_with_abnormal_long_term_variability">Percentage of Time with Abnormal Long Term Variability:</label>
+            <input type="number" id="percentage_of_time_with_abnormal_long_term_variability" step="any" required placeholder="Enter percentage of time with abnormal long term variability">
+            <label for="mean_value_of_long_term_variability">Mean Value of Long Term Variability:</label>
+            <input type="number" id="mean_value_of_long_term_variability" step="any" required placeholder="Enter mean value of long term variability">
+            <label for="histogram_width">Histogram Width:</label>
+            <input type="number" id="histogram_width" step="any" required placeholder="Enter histogram width">
+            <label for="histogram_min">Histogram Min:</label>
+            <input type="number" id="histogram_min" step="any" required placeholder="Enter histogram min">
+            <label for="histogram_max">Histogram Max:</label>
+            <input type="number" id="histogram_max" step="any" required placeholder="Enter histogram max">
+            <label for="histogram_number_of_peaks">Histogram Number of Peaks:</label>
+            <input type="number" id="histogram_number_of_peaks" step="any" required placeholder="Enter histogram number of peaks">
+            <label for="histogram_number_of_zeroes">Histogram Number of Zeroes:</label>
+            <input type="number" id="histogram_number_of_zeroes" step="any" required placeholder="Enter histogram number of zeroes">
+            <label for="histogram_mode">Histogram Mode:</label>
+            <input type="number" id="histogram_mode" step="any" required placeholder="Enter histogram mode">
+            <label for="histogram_mean">Histogram Mean:</label>
+            <input type="number" id="histogram_mean" step="any" required placeholder="Enter histogram mean">
+            <label for="histogram_median">Histogram Median:</label>
+            <input type="number" id="histogram_median" step="any" required placeholder="Enter histogram median">
+            <label for="histogram_variance">Histogram Variance:</label>
+            <input type="number" id="histogram_variance" step="any" required placeholder="Enter histogram variance">
+            <label for="histogram_tendency">Histogram Tendency:</label>
+            <input type="number" id="histogram_tendency" step="any" required placeholder="Enter histogram tendency">
+            <button type="submit">Predict</button>
+        </form>
+        <div id="result"></div>
+    </div>
+
+    <script>
+        document.getElementById('prediction-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+    
+            // Collect input values
+            var baseline = parseFloat(document.getElementById('baseline').value);
+            var accelerations = parseFloat(document.getElementById('accelerations').value);
+            var fetal_movement = parseFloat(document.getElementById('fetal_movement').value);
+            var uterine_contractions = parseFloat(document.getElementById('uterine_contractions').value);
+            var light_decelerations = parseFloat(document.getElementById('light_decelerations').value);
+            var severe_decelerations = parseFloat(document.getElementById('severe_decelerations').value);
+            var prolongued_decelerations = parseFloat(document.getElementById('prolongued_decelerations').value);
+            var abnormal_short_term_variability = parseFloat(document.getElementById('abnormal_short_term_variability').value);
+            var mean_value_of_short_term_variability = parseFloat(document.getElementById('mean_value_of_short_term_variability').value);
+            var percentage_of_time_with_abnormal_long_term_variability = parseFloat(document.getElementById('percentage_of_time_with_abnormal_long_term_variability').value);
+            var mean_value_of_long_term_variability = parseFloat(document.getElementById('mean_value_of_long_term_variability').value);
+            var histogram_width = parseFloat(document.getElementById('histogram_width').value);
+            var histogram_min = parseFloat(document.getElementById('histogram_min').value);
+            var histogram_max = parseFloat(document.getElementById('histogram_max').value);
+            var histogram_number_of_peaks = parseFloat(document.getElementById('histogram_number_of_peaks').value);
+            var histogram_number_of_zeroes = parseFloat(document.getElementById('histogram_number_of_zeroes').value);
+            var histogram_mode = parseFloat(document.getElementById('histogram_mode').value);
+            var histogram_mean = parseFloat(document.getElementById('histogram_mean').value);
+            var histogram_median = parseFloat(document.getElementById('histogram_median').value);
+            var histogram_variance = parseFloat(document.getElementById('histogram_variance').value);
+            var histogram_tendency = parseFloat(document.getElementById('histogram_tendency').value);
+    
+            // Make request to server for prediction
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', '/predict', true);
+            xhr.setRequestHeader('Content-Type', 'application/json'); // Set content type to JSON
+            xhr.onload = function() {
+                if (xhr.status === 200) {
+                    var result = JSON.parse(xhr.responseText);
+                    console.log(result);
+                    // Update result in HTML
+                    document.getElementById('result').innerText = 'Prediction Result: ' + result.result;
+                } else {
+                    alert('Error: ' + xhr.statusText);
+                }
+            };
+            xhr.onerror = function() {
+                alert('Request failed');
+            };
+            // Send JSON data
+            xhr.send(JSON.stringify({
+                baseline: baseline,
+                accelerations: accelerations,
+                fetal_movement: fetal_movement,
+                uterine_contractions: uterine_contractions,
+                light_decelerations: light_decelerations,
+                severe_decelerations: severe_decelerations,
+                prolongued_decelerations: prolongued_decelerations,
+                abnormal_short_term_variability: abnormal_short_term_variability,
+                mean_value_of_short_term_variability: mean_value_of_short_term_variability,
+                percentage_of_time_with_abnormal_long_term_variability: percentage_of_time_with_abnormal_long_term_variability,
+                mean_value_of_long_term_variability: mean_value_of_long_term_variability,
+                histogram_width: histogram_width,
+                histogram_min: histogram_min,
+                histogram_max: histogram_max,
+                histogram_number_of_peaks: histogram_number_of_peaks,
+                histogram_number_of_zeroes: histogram_number_of_zeroes,
+                histogram_mode: histogram_mode,
+                histogram_mean: histogram_mean,
+                histogram_median: histogram_median,
+                histogram_variance: histogram_variance,
+                histogram_tendency: histogram_tendency
+            }));
+        });
+    </script>
+</body>
+</html>
